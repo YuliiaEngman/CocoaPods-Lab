@@ -29,14 +29,23 @@ class DetailView: UIView {
         return label
     } ()
     
-    public lazy var addressLabel: UILabel = {
+    public lazy var addressLabel1: UILabel = {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
-        label.numberOfLines = 2
+        label.numberOfLines = 1
         label.text = "User Address"
         label.textAlignment = .center
         return label
     } ()
+    
+    public lazy var addressLabel2: UILabel = {
+           let label = UILabel()
+           label.font = UIFont.preferredFont(forTextStyle: .body)
+           label.numberOfLines = 1
+           label.text = "User Address"
+           label.textAlignment = .center
+           return label
+       } ()
     
     public lazy var phoneLabel: UILabel = {
         let label = UILabel()
@@ -71,7 +80,8 @@ class DetailView: UIView {
     private func commonInit(){
         setupUserNameLabelConstraints()
         setupDOBLabelConstraints()
-        setupAddressLabelConstraints()
+        setupAddressLabel1Constraints()
+        setupAddressLabel2Constraints()
         setupPhoneLabelConstraints()
         setupEmailLabelConstraints()
     }
@@ -92,18 +102,26 @@ class DetailView: UIView {
         }
     }
     
-    private func setupAddressLabelConstraints() {
-        addSubview(addressLabel)
-        addressLabel.snp.makeConstraints{ (make) in
+    private func setupAddressLabel1Constraints() {
+        addSubview(addressLabel1)
+        addressLabel1.snp.makeConstraints{ (make) in
             make.top.equalTo(dobLabel.layoutMarginsGuide).offset(50)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }
     
+    private func setupAddressLabel2Constraints() {
+           addSubview(addressLabel2)
+           addressLabel2.snp.makeConstraints{ (make) in
+               make.top.equalTo(addressLabel1.layoutMarginsGuide).offset(50)
+               make.leading.trailing.equalTo(self).inset(20)
+           }
+       }
+    
     private func setupPhoneLabelConstraints() {
         addSubview(phoneLabel)
         phoneLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(addressLabel.layoutMarginsGuide).offset(50)
+            make.top.equalTo(addressLabel2.layoutMarginsGuide).offset(50)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }

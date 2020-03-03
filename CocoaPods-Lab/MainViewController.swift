@@ -53,6 +53,7 @@ extension MainViewController: UITableViewDataSource {
         let user = users[indexPath.row]
         cell.textLabel?.text = "\(user.name.first) \(user.name.last)"
         cell.detailTextLabel?.text = user.email
+        cell.backgroundColor = .systemTeal
         return cell
     }
 }
@@ -70,15 +71,10 @@ extension MainViewController: UITableViewDelegate {
         }
         let userInfo = users[indexPath.row]
         detailVC.userInfo = userInfo
+        // if I want to present modaly:
+//        present(detailVC, animated: true, completion: nil)
         navigationController?.pushViewController(detailVC, animated: true)
     }
 }
 
-//override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//       guard let detailVC = segue.destination as? DetailViewController, let indexPath = tableView.indexPathForSelectedRow else {
-//           fatalError("could not downcast to DetailViewController")
-//       }
-//       let someElements = elements[indexPath.row]
-//       detailVC.oneElement = someElements
-//   }
 
