@@ -13,7 +13,7 @@ class MainViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     
-    private var users = [User]() {
+    public var users = [User]() {
        didSet {
         DispatchQueue.main.async {
             self.tableView.reloadData()
@@ -24,6 +24,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.dataSource = self
+        tableView.delegate = self
         getUsers()
     }
     
@@ -55,4 +56,29 @@ extension MainViewController: UITableViewDataSource {
         return cell
     }
 }
+
+extension MainViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+      
+        let detailVC = DetailViewController()
+        guard let indexPath = tableView.indexPathForSelectedRow else {
+            fatalError("could not downcast to DetailViewController")
+        }
+        let userInfo = users[indexPath.row]
+        detailVC.userInfo = userInfo
+        navigationController?.pushViewController(detailVC, animated: true)
+    }
+}
+
+//override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//       guard let detailVC = segue.destination as? DetailViewController, let indexPath = tableView.indexPathForSelectedRow else {
+//           fatalError("could not downcast to DetailViewController")
+//       }
+//       let someElements = elements[indexPath.row]
+//       detailVC.oneElement = someElements
+//   }
 

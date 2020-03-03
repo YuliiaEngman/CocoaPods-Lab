@@ -24,7 +24,7 @@ class DetailView: UIView {
         let label = UILabel()
         label.font = UIFont.preferredFont(forTextStyle: .body)
         label.numberOfLines = 1
-        label.text = "User DOB'"
+        label.text = "User DOB"
         label.textAlignment = .center
         return label
     } ()
@@ -73,20 +73,21 @@ class DetailView: UIView {
         setupDOBLabelConstraints()
         setupAddressLabelConstraints()
         setupPhoneLabelConstraints()
+        setupEmailLabelConstraints()
     }
     
     private func setupUserNameLabelConstraints() {
         addSubview(userNameLabel)
         userNameLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(self).offset(50)
-            make.leading.trailing.equalTo(self).inset(20)
+            make.top.equalTo(self.safeAreaInsets).offset(150)
+            make.leading.trailing.equalTo(self.safeAreaInsets).inset(20)
         }
     }
     
     private func setupDOBLabelConstraints() {
         addSubview(dobLabel)
         dobLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(self).offset(30)
+            make.top.equalTo(userNameLabel.layoutMarginsGuide).offset(60)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }
@@ -94,23 +95,23 @@ class DetailView: UIView {
     private func setupAddressLabelConstraints() {
         addSubview(addressLabel)
         addressLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(self).offset(30)
+            make.top.equalTo(dobLabel.layoutMarginsGuide).offset(50)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }
     
     private func setupPhoneLabelConstraints() {
-        addSubview(userNameLabel)
+        addSubview(phoneLabel)
         phoneLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(self).offset(30)
+            make.top.equalTo(addressLabel.layoutMarginsGuide).offset(50)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }
     
-    private func setupemailLabelConstraints() {
+    private func setupEmailLabelConstraints() {
         addSubview(emailLabel)
         emailLabel.snp.makeConstraints{ (make) in
-            make.top.equalTo(self).offset(30)
+            make.top.equalTo(phoneLabel.layoutMarginsGuide).offset(50)
             make.leading.trailing.equalTo(self).inset(20)
         }
     }

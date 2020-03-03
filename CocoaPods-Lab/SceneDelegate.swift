@@ -32,6 +32,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         }
            
         window?.rootViewController = navController
+        //window?.rootViewController = DetailViewController()
            // shows the window and makes it the key window
            window?.makeKeyAndVisible()
     }
