@@ -24,10 +24,14 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
            
            // the scene containing the window
            window?.windowScene = windowScene
+
+        
+           let storyboard = UIStoryboard(name: "MainView", bundle: nil)
+        guard let navController = storyboard.instantiateViewController(withIdentifier: "NavigationController") as? UINavigationController else {
+            fatalError()
+        }
            
-           // set the initial view controller
-           window?.rootViewController = UINavigationController(rootViewController: MainViewController())
-           
+        window?.rootViewController = navController
            // shows the window and makes it the key window
            window?.makeKeyAndVisible()
     }
